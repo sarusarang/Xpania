@@ -22,6 +22,7 @@ html {
 
 
 
+
 .foot-link {
 
     text-decoration: none !important;
@@ -122,6 +123,27 @@ html {
 
     font-weight: 300;
     font-size: 18px;
+
+}
+
+.about-head h1{ 
+
+
+   
+    font-size: 48px !important;
+    font-weight: 100 !important;
+    color: #212529;
+
+
+}
+
+.about-head p{
+
+
+    font-size: 17px !important;
+    font-weight: 300 !important;
+    color: #212529;
+    text-align: justify;
 
 }
 

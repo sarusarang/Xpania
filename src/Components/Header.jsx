@@ -105,12 +105,11 @@ function Header() {
 
                             <Link to={'/'} className='nav-home' onClick={handleNavClick}>Home</Link>
 
-                            <Link to={'/fil'} className='nav-home' onClick={handleNavClick}>About</Link>
+                            <Link to={'/about'} className='nav-home' onClick={handleNavClick}>About</Link>
 
                             <Link to={'/fil'} className='nav-home' onClick={handleNavClick}>Shop</Link>
 
-                            <Link to={'/fil'} className='nav-home' onClick={handleNavClick}>Contact</Link>
-
+                            <Link to={'/contact'} className='nav-home' onClick={handleNavClick}>Contact</Link>
 
                         </Nav>
 
