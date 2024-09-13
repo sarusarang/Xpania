@@ -3,7 +3,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;;
 
 }
 
@@ -76,8 +76,67 @@ html {
 }
 
 
-.policy-hover:hover{
+.policy-hover:hover {
 
-    color: #68bb7d!important;
+    color: #68bb7d !important;
+
+}
+
+
+
+/* Slider */
+
+
+.carousel-indicators .active {
+
+    background-color: #32CD32 !important;
+
+}
+
+
+.carousel-indicators [data-bs-target] {
+
+    background-color: #05ad05 !important;
+
+}
+
+
+
+.slider-text h1 {
+
+    font-size: 48px !important;
+    font-weight: 100 !important;
+    color: #212529 !important;
+
+
+}
+
+.slider-text {
+
+    padding-bottom: 3rem;
+    padding-left: 8rem;
+
+}
+
+.slider-text p {
+
+    font-weight: 300;
+    font-size: 18px;
+
+}
+
+
+@media only screen and (max-width: 481px) {
+
+
+
+    .slider-text {
+
+        padding-bottom: 3rem;
+        padding-left: 2rem !important;
+
+    }
+
+
 
 }

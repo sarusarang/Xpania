@@ -1,0 +1,86 @@
+.trend-text h1 {
+
+
+    font-size: 48px !important;
+    font-weight: 100 !important;
+    color: #212529;
+
+
+}
+
+.trend-text p {
+
+
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #212529;
+    text-align: center;
+
+
+}
+
+.trend-text {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.custom-card {
+    max-width: 300px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    padding: 10px;
+    transition: all ease-in-out 0.3s;
+}
+
+
+.custom-card:hover {
+
+    margin-top: -1.5rem;
+
+}
+
+
+
+.custom-img {
+    width: 100%;
+    border-radius: none;
+}
+
+.card-body {
+    margin-top: 10px;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+@media only screen and (max-width: 481px) {
+
+
+
+    .trend-text h1 {
+
+
+        font-size: 40px !important;
+        font-weight: 100 !important;
+        color: #212529;
+
+
+    }
+
+
+
+
+
+}

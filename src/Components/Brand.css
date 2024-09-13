@@ -1,0 +1,54 @@
+.brand-head h1 {
+
+
+    font-size: 48px !important;
+    font-weight: 100 !important;
+    color: #212529;
+
+}
+
+.brand-head p {
+
+
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #212529;
+    text-align: center;
+}
+
+.brand-head {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.btn-discover {
+
+    border: 1px solid #000;
+    border-radius: 0rem;
+    font-weight: 500;
+    transition: background ease-in-out 0.4s;
+
+}
+
+.btn-discover:hover {
+
+    background-color: #000;
+
+    color: #fff;
+
+}
+
+.brand p {
+
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #212529;
+    text-align: justify;
+    
+
+}

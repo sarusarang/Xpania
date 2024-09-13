@@ -8,10 +8,6 @@ import React from 'react'
 function Footer() {
 
 
-
-
-
-
   return (
     <>
 
@@ -120,13 +116,18 @@ function Footer() {
             </div>
 
 
-            <div className="col-auto">
+            {/* <div className="col-auto">
               <label className="sr-only" for="subscribeEmail">Email address</label>
+
               <div className="input-group mb-2">
-                <input type="text" className="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address" />
-                <div className="input-group-text btn-success text-light">Subscribe</div>
+
+                <input type="text" className="form-control bg-secondary  text-dark" id="subscribeEmail" placeholder="Email address" />
+
+                <div className="input-group-text btn btn-success ">Subscribe</div>
               </div>
-            </div>
+            </div> */}
+
+
           </div>
         </div>
 
