@@ -12,6 +12,7 @@ function Hero() {
     useEffect(() => {
 
         Aos.init()
+        Aos.refresh(); 
 
     }, [])
 

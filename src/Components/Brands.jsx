@@ -11,6 +11,8 @@ function Brands() {
 
         Aos.init()
 
+        Aos.refresh(); 
+
     }, [])
 
 
