@@ -1,16 +1,21 @@
 import React from 'react'
 import './Filter.css'
 import { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Pagination, Accordion, Collapse } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Pagination, Accordion } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Filter() {
 
 
+    // Filter Status
     const [showAllSize, setShowAllSize] = useState(false)
 
-    const [showAllColor, setShowAllColor] = useState(false);
+    const [showAllColor, setShowAllColor] = useState(false)
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
+
+
+    const Navigate = useNavigate()
 
 
 
@@ -405,7 +410,7 @@ function Filter() {
 
                                         <div className='new-arrival'>
 
-                                            <img loading='lazy' src="/image-05.jpg" className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/${item.id}`) }} />
+                                            <img loading='lazy' src="/image-05.jpg" className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/1`) }} />
 
 
                                         </div>

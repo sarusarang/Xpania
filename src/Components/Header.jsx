@@ -130,19 +130,19 @@ function Header() {
 
                             <Link to={'/fil'} onClick={handleNavClick} className='search-none'>
 
-                                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                                <i className="fa-solid fa-magnifying-glass fa-lg"></i>
 
                             </Link>
 
 
 
-                            <Link to={'/cart'} onClick={handleNavClick}><i class="fa-solid fa-cart-shopping fa-lg"></i></Link>
+                            <Link to={'/cart'} onClick={handleNavClick}><i className="fa-solid fa-cart-shopping fa-lg"></i></Link>
 
 
 
                             <div className='dropdown'>
 
-                                <Nav.Link  ><i class="fa-solid fa-user fa-lg"></i></Nav.Link>
+                                <Nav.Link  ><i className="fa-solid fa-user fa-lg"></i></Nav.Link>
 
                                 <div className='dropdown-content'>
 

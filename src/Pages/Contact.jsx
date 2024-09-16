@@ -35,18 +35,18 @@ function Contact() {
                         <h3 className='mb-4'>Xpania Footcare LLP</h3>
 
 
-                        <p><i class="fa-solid fa-house me-2"></i>43/129 B, Near CICS Sneha Nagar, Jayanthi Road, Kolathara P.O,Calicut, India, Kerala</p>
+                        <p><i className="fa-solid fa-house me-2"></i>43/129 B, Near CICS Sneha Nagar, Jayanthi Road, Kolathara P.O,Calicut, India, Kerala</p>
 
                         <p>
 
-                            <a href="https://wa.me/+919746388810" className='nav-link' target='_blank'> <i class="fa-solid fa-phone me-2"></i>+91 9746388810</a>
+                            <a href="https://wa.me/+919746388810" className='nav-link' target='_blank'> <i className="fa-solid fa-phone me-2"></i>+91 9746388810</a>
 
 
                         </p>
 
                         <p>
 
-                            <a href="mailto:info@xpania.in" className='nav-link' target='_blank'><i class="fa-solid fa-envelope me-2"></i>info@xpania.in</a>
+                            <a href="mailto:info@xpania.in" className='nav-link' target='_blank'><i className="fa-solid fa-envelope me-2"></i>info@xpania.in</a>
 
 
                         </p>
@@ -55,7 +55,7 @@ function Contact() {
 
                         <p>
 
-                            <a href="https://xpania.in/" className='nav-link' target='_blank'><i class="fa-solid fa-earth-americas me-2"></i>www.xpania.in</a>
+                            <a href="https://xpania.in/" className='nav-link' target='_blank'><i className="fa-solid fa-earth-americas me-2"></i>www.xpania.in</a>
 
                         </p>
 

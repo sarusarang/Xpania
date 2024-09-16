@@ -28,6 +28,9 @@ html {
 }
 
 
+
+
+/* Footer */
 .foot-link {
 
     text-decoration: none !important;
@@ -91,8 +94,6 @@ html {
 
 
 /* Slider */
-
-
 .carousel-indicators .active {
 
     background-color: #32CD32 !important;
@@ -131,6 +132,9 @@ html {
 
 }
 
+
+
+/* About */
 .about-head h1{ 
 
 
@@ -151,6 +155,10 @@ html {
     text-align: justify;
 
 }
+
+
+
+
 
 
 @media only screen and (max-width: 481px) {
