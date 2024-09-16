@@ -32,6 +32,9 @@ function Header() {
 
         <>
 
+
+
+
             <nav
                 className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
                 id="templatemo_nav_top"
@@ -79,7 +82,7 @@ function Header() {
 
             <Navbar expand="lg" className="header" collapseOnSelect expanded={expanded}>
 
-                <Container className='contain'>
+                <Container className='contain p-1'>
 
 
                     <div className='nav-logo'>
@@ -162,6 +165,7 @@ function Header() {
                 </Container>
 
             </Navbar>
+
 
 
 

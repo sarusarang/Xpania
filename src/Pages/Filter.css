@@ -1,0 +1,153 @@
+/* Main Container */
+.filter-page {
+
+    padding: 2rem;
+
+
+
+}
+
+
+
+/* Sidebar */
+.sidebar {
+
+    border-right: solid 1px #eee !important;
+    padding: 1rem;
+
+}
+
+/* Sidebar Filters */
+.sidebar h4 {
+    margin-bottom: 1.5rem;
+}
+
+
+/* Product Grid */
+.product-col {
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    border: none;
+    text-align: center;
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Pagination */
+.pagination-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+.pagination-bar .page-link {
+
+    background-color: #fff;
+    color: #000;
+    border-color: black;
+  
+}
+
+.pagination-bar .page-link:hover {
+    
+    background-color: #000;
+    color: #fff;
+    border-color: black;
+}
+
+.pagination-bar .page-item.active .page-link {
+
+    background-color: #000;
+    color: #fff;
+    border-color: black;
+    
+}
+
+
+
+.btn-reset {
+
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 0.5rem 0rem;
+    border-radius: 0rem;
+
+}
+
+
+/* Remove borders and background from Accordion */
+.accordion-item {
+    border: none;
+}
+
+.accordion-button {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    color: inherit;
+    font-weight: 600 !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: inherit;
+    background-color: transparent;
+    box-shadow: none;
+    font-weight: 700 !important;
+}
+
+/* Remove background and borders for Form checkboxes */
+.form-check-input {
+    box-shadow: none;
+}
+
+.form-check-label {
+    color: inherit;
+}
+
+.accordion-body {
+
+    padding: 0rem 1rem !important;
+
+}
+
+
+.color {
+
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+
+}
+
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.label-container {
+
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+
+}
+
+
+/* .custom-checkbox .form-check-input:checked {
+    background-color: #62e462;
+    border-color: none;
+}
+
+.custom-checkbox .form-check-input:checked::before {
+    background-color: #62e462;
+    border-color:;
+} */
