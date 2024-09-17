@@ -3,7 +3,8 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    scroll-behavior: smooth;;
+    scroll-behavior: smooth;
+    ;
 
 }
 
@@ -21,7 +22,7 @@ html {
 }
 
 
-.head-shdw{
+.head-shdw {
 
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
@@ -135,10 +136,10 @@ html {
 
 
 /* About */
-.about-head h1{ 
+.about-head h1 {
 
 
-   
+
     font-size: 48px !important;
     font-weight: 100 !important;
     color: #212529;
@@ -146,7 +147,7 @@ html {
 
 }
 
-.about-head p{
+.about-head p {
 
 
     font-size: 17px !important;
@@ -158,9 +159,128 @@ html {
 
 
 
+/* Single product */
+.size-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.size-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.size-btn.selected {
+    border: 2px solid #000;
+    color: #fff;
+    background-color: #2a2a2a;
+}
+
+.size-btn.unavailable {
+    position: relative;
+    /* To position the pseudo-element relative to the button */
+    border: 1px solid #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.size-btn.unavailable::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+.size-btn:hover:not(.unavailable) {
+    background-color: #f0f0f0;
+    color: #000;
+}
 
 
 
+.delivery-checker {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.delivery-checker p {
+
+    font-size: 13px;
+    color: #282C3F;
+
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    /* Adjust as per your design */
+}
+
+.postal-input {
+    width: 100%;
+    padding: 10px 100px 10px 10px;
+    /* Add space for the button inside */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+
+}
+
+.check-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 15px;
+    background-color: transparent;
+    color: #2a2a2a;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+
+}
+
+
+
+.btn-buy {
+
+    background-color: #000 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    transition:  all ease-in-out 0.3s !important;
+
+}
+
+.btn-buy:hover{
+
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    
+}
+
+
+
+/* Mobile view */
 @media only screen and (max-width: 481px) {
 
 
@@ -169,6 +289,14 @@ html {
 
         padding-bottom: 3rem;
         padding-left: 2rem !important;
+
+    }
+
+    .in-stock {
+
+        font-size: small;
+        margin-top: 0.2rem;
+
 
     }
 

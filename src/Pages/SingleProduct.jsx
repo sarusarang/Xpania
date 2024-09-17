@@ -1,8 +1,12 @@
 import React from 'react'
+import { useState } from 'react';
+import ProductSlide from '../Components/ProductSlide'
 
 function SingleProduct() {
 
     window.scrollTo(0, 0)
+
+
 
     return (
 
@@ -51,11 +55,11 @@ function SingleProduct() {
 
                                     <div className="d-flex flex-row mt-1">
 
-                                        <h5 style={{ color: "#777", fontWeight: '400' }}>Perfect Sandals for Gents</h5>
+                                        <h5 style={{ color: "#535665", fontWeight: '400' }} >Perfect Sandals for Gents</h5>
 
                                         <span className="text-muted ms-2"><i className="fas fa-shopping-basket fa-sm mx-1"></i></span>
 
-                                        <span className="text-success">In Stock</span>
+                                        <span className="text-success in-stock">In Stock</span>
 
                                     </div>
 
@@ -82,10 +86,7 @@ function SingleProduct() {
 
 
 
-                                    {/* Incrediants */}
-                                    <p className='mb-4'>
-                                        Good
-                                    </p>
+
 
 
                                     <div className="d-flex justify-content-start mb-4">
@@ -107,7 +108,7 @@ function SingleProduct() {
 
 
 
-
+                                    {/* Color */}
                                     <div className="row">
 
                                         <dt className="col-2">Color:</dt>
@@ -119,7 +120,10 @@ function SingleProduct() {
 
 
 
-                                    {/* Quanity */}
+
+
+
+                                    {/* Size */}
                                     <div className=" mb-4">
 
 
@@ -129,7 +133,7 @@ function SingleProduct() {
                                             <div className='d-flex align-items-center'>
 
 
-                                                <label className="mb-1 fw-bold" style={{ fontSize: '1.3rem' }}>Size</label>
+                                                <label className="mb-1 fw-bold h4" style={{ fontSize: '18px' }}>Select Size</label>
 
 
                                             </div>
@@ -137,11 +141,37 @@ function SingleProduct() {
 
 
 
-                                            <div className='row btn-size'>
+                                            <div className='row'>
 
 
-                                                <button className="btn btn-dark mt-2 col-1 ms-3">10</button>
-                                                
+                                                <div className="size-selector mt-2">
+                                                    <button className="size-btn selected">8</button>
+                                                    <button className="size-btn">9</button>
+                                                    <button className="size-btn unavailable">10</button>
+                                                    <button className="size-btn unavailable">11</button>
+                                                </div>
+
+
+                                            </div>
+
+                                            {/* Delivery  */}
+                                            <div className='row mt-4'>
+
+                                                <h1 className='h6 fw-bold'>DELIVERY OPTIONS <i className="fa-solid fa-truck-fast"></i></h1>
+
+                                                <div className="delivery-checker">
+
+                                                    <div className="input-wrapper">
+
+                                                        <input type="text" placeholder="Enter Pincode" className="postal-input" maxlength="6" pattern="\d{6}" inputMode='numeric' onInput={(e) => { e.target.value = e.target.value.replace(/\D/, '') }} />
+
+                                                        <button className="check-btn">Check</button>
+
+                                                    </div>
+
+                                                    <p>Please enter PIN code to check delivery time & Delivery Availability*</p>
+
+                                                </div>
 
                                             </div>
 
@@ -155,25 +185,44 @@ function SingleProduct() {
                                     <hr />
 
 
-                                    <div className='row sec-buy mt-4'>
 
-                                        {/* Buy Now */}
-                                        <a className="btn btn-dark p-3 shadow me-3 col-md-5"> Buy now </a>
-                                        <a className="btn btn-dark p-3 shadow col-md-6"> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                                    {/* Buy Now */}
+                                    <div className='row sec-buy'>
+
+
+                                        <a className="btn btn-buy p-3 shadow me-3 col-md-5 mt-3"> Buy now </a>
+                                        <a className="btn btn-buy p-3 shadow col-md-6 mt-3"> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
 
                                     </div>
-
-
-
-
-
 
 
                                 </div>
 
 
                             </main>
+
+
                         </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                {/* Products */}
+                <section className='pb-5 pt-5 mt-5' style={{ borderTop: '3px dotted #eee' }}>
+
+
+                    <div>
+
+                        <h3 className='text-center mb-0' style={{ fontWeight: '600' }}>YOU MAY ALSO LIKE</h3>
+                        <p className='text-center' style={{ color: '#777' }}>Browse the collection of related products.</p>
+
+                        <ProductSlide />
+
                     </div>
 
 
