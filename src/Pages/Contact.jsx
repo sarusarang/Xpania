@@ -3,7 +3,7 @@ import './Contact.css'
 
 function Contact() {
 
-
+    window.scrollTo(0, 0)
 
 
 

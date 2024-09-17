@@ -6,6 +6,7 @@ import Hero from '../Components/Hero'
 function Landing() {
 
 
+    window.scrollTo(0, 0)
 
     return (
 

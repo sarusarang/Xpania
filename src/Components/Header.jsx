@@ -60,17 +60,17 @@ function Header() {
                             </a>
                         </div>
                         <div>
-                            <a className="text-light" href="" target="_blank" rel="sponsored">
+                            <a className="text-light" href="https://www.facebook.com/Xpaniafootcare" target="_blank" rel="sponsored">
                                 <i className="fa-brands fa-facebook-f fa-sm fa-fw me-2 "></i>
                             </a>
-                            <a className="text-light" href="" target="_blank">
+                            <a className="text-light" href="https://www.instagram.com/xpaniafootcare/?next=%2F" target="_blank">
                                 <i className="fa-brands fa-instagram fa-sm fa-fw me-2"></i>
                             </a>
-                            <a className="text-light" href="" target="_blank">
+                            <a className="text-light" href="https://x.com/xpaniafootcare" target="_blank">
                                 <i className="fa-brands fa-x-twitter fa-sm fa-fw me-2"></i>
                             </a>
-                            <a className="text-light" href="" target="_blank">
-                                <i className="fa-brands fa-linkedin  fa-sm fa-fw me-2"></i>
+                            <a className="text-light" href="https://in.pinterest.com/xpaniafootcar" target="_blank">
+                            <i class="fa-brands fa-pinterest"></i>
                             </a>
                         </div>
                     </div>

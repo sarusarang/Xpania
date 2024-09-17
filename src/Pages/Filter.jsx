@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Filter() {
 
+    window.scrollTo(0, 0)
+
 
     // Filter Status
     const [showAllSize, setShowAllSize] = useState(false)

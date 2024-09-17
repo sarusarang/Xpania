@@ -10,6 +10,8 @@ const Contact = lazy(() => import('./Pages/Contact'))
 const SingleProduct = lazy(() => import('./Pages/SingleProduct'))
 const Filter = lazy(() => import('./Pages/Filter'))
 const Auth = lazy(() => import('./Pages/Auth'))
+const Policy = lazy(() => import('./Pages/Policy'))
+const Terms = lazy(() =>  import('./Pages/Terms') )
 
 
 function App() {
@@ -23,16 +25,16 @@ function App() {
 
       <Suspense fallback={<div></div>}>
 
-
         <div className="w-100 head-shdw">
 
           <Header />
 
         </div>
 
-
-
       </Suspense>
+
+
+
 
 
       <Suspense fallback={<div></div>}>
@@ -51,9 +53,16 @@ function App() {
 
           <Route path="/auth" element={<Auth />} />
 
+          <Route path="/policy" element={<Policy />} />
+
+          <Route path="/terms" element={<Terms />} />
+
         </Routes>
 
       </Suspense>
+
+
+
 
 
       <Suspense fallback={<div></div>}>

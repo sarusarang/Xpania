@@ -2,7 +2,7 @@ import React from 'react'
 
 function SingleProduct() {
 
-
+    window.scrollTo(0, 0)
 
     return (
 

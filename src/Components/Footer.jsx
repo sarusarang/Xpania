@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -25,16 +26,24 @@ function Footer() {
 
               <ul className="list-unstyled">
                 <li className='pb-2'>
-                  <a className="foot-link" href="">Home</a>
+
+                  <Link to={'/'} className='foot-link'>Home</Link>
+
                 </li>
                 <li className='pb-2'>
-                  <a className="foot-link" href="">About </a>
+
+                  <Link to={'/about'} className='foot-link'>About</Link>
+
                 </li>
                 <li className='pb-2'>
-                  <a className="foot-link" href="">Shop </a>
+
+                  <Link to={'/fil'} className='foot-link'>Shop</Link>
+
                 </li>
                 <li className='pb-2'>
-                  <a className="foot-link" href="">Contact </a>
+
+                  <Link to={'/contact'} className='foot-link'>Contact</Link>
+
                 </li>
               </ul>
             </div>
@@ -61,9 +70,10 @@ function Footer() {
               <ul className="list-unstyled text-light footer-link-list">
 
                 <li className='pb-2'><a className="foot-link" href="#">Track your order</a></li>
-                <li className='pb-2'><a className="foot-link" href="xpniaprivacypolicyhtml.html">Privacy Policy</a></li>
-                <li className='pb-2'><a className="foot-link" href="termsandcondition.html">Terms and Conditions</a></li>
-                <li className='pb-2'><a className="foot-link" href="#">Contact Us</a></li>
+
+                <li className='pb-2'><Link to={'/policy'} className='foot-link'>Privacy & Policy</Link></li>
+                <li className='pb-2'><Link to={'/terms'} className='foot-link'>Terms & Conditions</Link></li>
+                <li className='pb-2'><Link to={'/contact'} className='foot-link'>Contact Us</Link></li>
 
 
               </ul>
@@ -141,13 +151,15 @@ function Footer() {
 
                   Copyright &copy; 2024 All rights reserved | Xpania
 
-                  <a rel="sponsored" href="www.expania.in" target="_blank" className='px-2 text-white'>www.expania.in</a>
+                  <a rel="sponsored" href="https://xpania.in/" target="_blank" className='px-2 text-white'>www.expania.in</a>
 
                   <br />
 
-                  <a href="xpniaprivacypolicyhtml.html" className='me-3 text-white policy-hover' style={{textDecoration:'none'}}>Privacy & Policy</a>
+                  <Link to={'/policy'} className='me-3 text-white policy-hover' style={{ textDecoration: 'none' }}>Privacy & Policy</Link>
 
-                  <a href="termsandcondition.html" className='text-white policy-hover' style={{textDecoration:'none'}}>Terms & Conditions</a>
+
+                  <Link to={'/terms'} className='me-3 text-white policy-hover' style={{ textDecoration: 'none' }}>Terms & Conditions</Link>
+
 
                 </p>
 
