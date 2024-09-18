@@ -3,8 +3,9 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { useForm, } from 'react-hook-form'
-import { Login, Register } from '../Services/AllAPi'
+import { Login, Register,GoogleAuth } from '../Services/AllAPi'
 import { toast } from 'sonner'
+import { useGoogleLogin } from '@react-oauth/google'
 
 function Auth() {
 
@@ -147,6 +148,92 @@ function Auth() {
     }
 
 
+    // Google Login
+    const Googlelogin = useGoogleLogin({
+
+        onSuccess: async (tokenResponse) => {
+
+
+            try {
+
+                const accessToken = tokenResponse.access_token;
+
+
+                const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+
+
+                if (!userInfoResponse.ok) {
+
+                    throw new Error('Failed to fetch user info');
+
+                }
+                else {
+
+
+                    const userInfo = await userInfoResponse.json();
+
+
+                    const formdata = new FormData()
+
+                    formdata.append("username", userInfo.name)
+                    formdata.append("email", userInfo.email)
+
+
+                    const reqheader = {
+
+                        "Content-Type": "multipart/form-data"
+
+                    }
+
+
+                    const res = await GoogleAuth(formdata, reqheader)
+
+
+                    if (res.status >= 200 && res.status <= 300) {
+
+                        sessionStorage.setItem("token", res.data.token)
+                        sessionStorage.setItem("user", userInfo.name)
+
+                        toast.success("Login Success...!")
+
+                        setTimeout(() => {
+
+                            Navigate('/')
+
+                        }, 1000);
+
+
+                    }
+                    else {
+
+                        console.log(res);
+
+
+                    }
+
+
+                }
+
+
+            }
+            catch (err) {
+
+                console.log(err);
+
+
+            }
+
+        }
+
+
+    })
+
+
+
     return (
 
 
@@ -203,7 +290,7 @@ function Auth() {
 
                                     <input type='submit' className='btn-login w-100 mt-3' value="Login" />
 
-                                    <button className="google-login-btn mt-3 w-100">
+                                    <button className="google-login-btn mt-3 w-100" onClick={Googlelogin} type='button'>
                                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" className="google-icon" />
                                         Login with Google
                                     </button>

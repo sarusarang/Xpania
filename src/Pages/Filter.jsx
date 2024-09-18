@@ -1,12 +1,18 @@
 import React from 'react'
 import './Filter.css'
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Container, Row, Col, Form, Button, Pagination, Accordion } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ProductList } from '../Hooks/ProductList';
+import { Skeleton } from '@mui/material';
 
 function Filter() {
 
     window.scrollTo(0, 0)
+
+
+    // ALL PRODUCT DATA
+    const { data, isLoading, isError, isSuccess } = ProductList()
 
 
     // Filter Status
@@ -17,7 +23,63 @@ function Filter() {
     const [open, setOpen] = useState(false)
 
 
+    const [FilterData, SetFilterData] = useState({
+
+        brand: "", category: "", type: ""
+
+    })
+
+
     const Navigate = useNavigate()
+
+
+
+
+    const filteredProducts = useMemo(() => {
+        if (!isSuccess) return [];
+
+        // Check if all filter fields are empty or default
+        const noFiltersApplied =
+            !FilterData.category &&
+            !FilterData.type &&
+            !FilterData.brand;
+
+
+        // Return all products if no filters are applied
+        if (noFiltersApplied) {
+            return data;
+        }
+
+        // Filter products based on selected filters
+        return data.filter(product => {
+
+            const inCategory = FilterData.category === "" || product.category.toLowerCase() === FilterData.category.toLowerCase();
+            const inType = FilterData.type === "" || product.sub_cateory.toLowerCase() === FilterData.type.toLowerCase();
+            const inBrand = FilterData.brand === "" || product.brand.toLowerCase() === FilterData.brand.toLowerCase();
+
+            return inCategory && inType && inBrand;
+
+        })
+
+    }, [data, isSuccess, FilterData])
+
+
+    console.log(filteredProducts)
+
+
+
+
+
+    const ClearAll = ()=>{
+
+
+        SetFilterData({...FilterData,brand:"",type:"",category:""})
+
+
+    }
+
+
+
 
 
 
@@ -62,7 +124,7 @@ function Filter() {
 
                                 <h4 className='mb-0'>Filter</h4>
 
-                                <button className='btn text-danger' style={{ fontWeight: '500' }}>Clear All</button>
+                                <button className='btn text-danger' style={{ fontWeight: '500' }} onClick={ClearAll}>Clear All</button>
 
 
                             </div>
@@ -74,11 +136,14 @@ function Filter() {
                             <Form.Group controlId="categoryFilter">
 
                                 <Form.Label className='fw-bold'>Brands</Form.Label>
-                                <Form.Control as="select">
+
+                                <Form.Control as="select" onChange={(e) => { SetFilterData({ ...FilterData, brand: e.target.value }) }}>
+
                                     <option>All Brands</option>
-                                    <option>XPANIA</option>
-                                    <option>ZIBAGO</option>
-                                    <option>AIDA</option>
+                                    <option value="XPANIA">XPANIA</option>
+                                    <option value="ZIBAGO">ZIBAGO</option>
+                                    <option value="AIDA">AIDA</option>
+
                                 </Form.Control>
 
                             </Form.Group>
@@ -96,34 +161,46 @@ function Filter() {
 
 
                                         <Form>
+
                                             <Form.Check
                                                 type="checkbox"
-                                                label="Men"
+                                                checked={FilterData.category == "gents"}
+                                                label="Gents"
                                                 id="category-men"
                                                 className="custom-checkbox"
+                                                value="gents"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, category: e.target.value }) }}
                                             />
 
                                             <Form.Check
                                                 type="checkbox"
-                                                label="Gents"
+                                                checked={FilterData.category == "ladies"}
+                                                label="Ladies"
+                                                value="ladies"
                                                 id="category-gents"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, category: e.target.value }) }}
                                             />
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.category == "boys&girls"}
                                                 label="Boys & Girls"
+                                                value="boys&girls"
                                                 id="category-boys"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, category: e.target.value }) }}
                                             />
 
                                             <Form.Check
                                                 type="checkbox"
                                                 label="Kids"
+                                                value="kids"
+                                                checked={FilterData.category == "kids"}
                                                 id="category-kids"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, category: e.target.value }) }}
                                             />
-
 
 
                                         </Form>
@@ -142,43 +219,60 @@ function Filter() {
                                     <Accordion.Body>
 
                                         <Form>
+
                                             <Form.Check
+
                                                 type="checkbox"
+                                                checked={FilterData.type == "Shoes"}
                                                 label="Shoes"
+                                                value="Shoes"
                                                 id="type-Shoes"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
 
                                             />
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Sports"}
                                                 label="Sports"
+                                                value="Sports"
                                                 id="type-Sports"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Casuals"}
                                                 label="Casuals"
+                                                value="Casuals"
                                                 id="type-Casuals"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Formals"}
                                                 label="Formals"
+                                                value="Formals"
                                                 id="type-Formals"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
 
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Sandals"}
                                                 label="Sandals"
+                                                value="Sandals"
                                                 id="type-Sandals"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
 
@@ -186,17 +280,23 @@ function Filter() {
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Filp Flop"}
                                                 label="Flip Flop"
+                                                value="Filp Flop"
                                                 id="type-Flip Flop"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
 
                                             <Form.Check
                                                 type="checkbox"
+                                                checked={FilterData.type == "Clogs"}
                                                 label="Clogs"
+                                                value="Clogs"
                                                 id="type-Clogs"
                                                 className="custom-checkbox"
+                                                onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
                                             />
 
 
@@ -374,9 +474,7 @@ function Filter() {
                                     </Accordion.Body>
 
 
-
                                 </Accordion.Item>
-
 
 
                             </Accordion>
@@ -389,10 +487,6 @@ function Filter() {
 
 
 
-
-
-
-
                     {/* Product Grid */}
                     <Col md={10} className='p-4 pt-0 pb-0'>
 
@@ -400,66 +494,100 @@ function Filter() {
                         <Row>
 
 
-                            <h4>9 Products Found</h4>
-
-                            {[...Array(9)].map((_, idx) => (
-                                <Col md={3} sm={6} xs={12} className="product-col" key={idx}>
+                            <h4>{filteredProducts.length > 0 ? `${filteredProducts.length} Products Found `: ""}</h4>
 
 
 
-                                    <div className="card w-100 my-2 border hover-shdw">
+                            {
+
+                                isLoading  &&
+
+                                Array.from({ length: 6 }).map((item) => (
 
 
-                                        <div className='new-arrival'>
+                                    <div className=' mt-3 col-md-4'>
 
-                                            <img loading='lazy' src="/image-05.jpg" className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/1`) }} />
+                                        <Skeleton sx={{ height: 190 }} width={'100%'} animation="wave" variant="rectangular" />
+
+                                        <Skeleton animation="wave" height={20} width={'100%'} style={{ marginBottom: 6, marginTop: '1rem' }} />
+
+                                        <Skeleton animation="wave" height={20} width="80%" />
+
+                                    </div>
+
+                                ))
 
 
-                                        </div>
+                            }
+
+
+                            {
+
+                                isSuccess && filteredProducts.length > 0 ?
+
+
+                                    filteredProducts.map((item) => (
+
+
+                                        <Col md={3} sm={6} xs={12} key={item.id} className="product-col">
+
+
+                                            <div className="card w-100 my-2 border hover-shdw">
+
+
+                                                <div className='new-arrival'>
+
+                                                    <img alt='product-image' loading='lazy' src={item.image} className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/1`) }} />
+
+                                                </div>
 
 
 
-                                        <div className="card-body d-flex flex-column">
+                                                <div className="card-body d-flex flex-column">
 
-                                            <p className="mb-1">Gents Sandals <span className='fw-bold'>XLV001</span></p>
-                                            <p className="fw-bold mb-1">Xpania</p>
+                                                    <p className="mb-1">{item.category} {item.sub_cateory} <span className='fw-bold'>XLV001</span></p>
 
-                                            <div className="d-flex flex-row align-items-center">
+                                                    <p className="fw-bold mb-1">{item.brand}</p>
 
-                                                <p className="mb-1 me-1 fw-bold">Rs.1000</p>
+                                                    <div className="d-flex flex-row align-items-center">
 
-                                                <span className="text-danger small"><s>₹1000</s></span>
+                                                        <p className="mb-1 me-1 fw-bold">Rs.{item.offer_is_available ? item.offer_price : item.price}</p>
 
-                                                <p className='text-success ms-2 mb-0 small'>(10%off)</p>
+                                                        <span className="text-danger small">{item.offer_is_available ? <s>₹{item.price}</s> : ""}</span>
+
+                                                        <p className='text-success ms-2 mb-0'>{item.offer_is_available ? <s style={{ textDecoration: 'none' }}>({item.offer_percentage}%off)</s> : ""}</p>
+
+
+                                                    </div>
+
+                                                </div>
 
 
                                             </div>
 
 
-                                        </div>
+                                        </Col>
 
+
+                                    ))
+
+                                    :
+
+
+                                    <div className='d-flex justify-content-center p-5 pt-0'>
+
+                                        <img src="https://www.fruitomans.com/themes/home/images/no-product-found.png" className='img-fluid' alt="img" loading='lazy' />
 
                                     </div>
 
 
-                                </Col>
-                            ))}
+                            }
+
+
 
                         </Row>
 
-                        {/* Pagination */}
-                        <Pagination className="pagination-bar">
-
-                            <Pagination.Prev />
-                            <Pagination.Item active>{1}</Pagination.Item>
-                            <Pagination.Item>{2}</Pagination.Item>
-                            <Pagination.Item>{3}</Pagination.Item>
-                            <Pagination.Next />
-
-
-                        </Pagination>
-
-
+                       
 
                     </Col>
 
@@ -469,13 +597,7 @@ function Filter() {
 
 
 
-
-
             </Container >
-
-
-
-
 
 
 
