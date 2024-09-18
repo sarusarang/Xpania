@@ -2,7 +2,7 @@ import { CommonApi } from "./CommonApi"
 
 
 
-const base_url = ""
+const base_url = "https://server.xpania.in"
 
 
 
@@ -10,7 +10,7 @@ const base_url = ""
 export const Login = async (data, headers) => {
 
 
-    return await CommonApi("POST", `${base_url}`, data, headers)
+    return await CommonApi("POST", `${base_url}/api/token/`, data, headers)
 
 
 }
@@ -20,7 +20,6 @@ export const Login = async (data, headers) => {
 export const Register = async (data, headers) => {
 
 
-    return await CommonApi("POST", `${base_url}`, data, headers)
-
+    return await CommonApi("POST", `${base_url}/api/register/`, data, headers)
 
 }

@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, Suspense, lazy } from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
+import { Toaster } from "sonner"
 
 const Landing = lazy(() => import('./Pages/Landing'))
 const Header = lazy(() => import('./Components/Header'))
@@ -106,6 +107,8 @@ function App() {
 
       </Suspense>
 
+
+      <Toaster richColors position="top-center" />
 
 
     </>

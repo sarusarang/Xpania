@@ -70,7 +70,7 @@ function Header() {
                                 <i className="fa-brands fa-x-twitter fa-sm fa-fw me-2"></i>
                             </a>
                             <a className="text-light" href="https://in.pinterest.com/xpaniafootcar" target="_blank">
-                            <i class="fa-brands fa-pinterest"></i>
+                            <i className="fa-brands fa-pinterest"></i>
                             </a>
                         </div>
                     </div>

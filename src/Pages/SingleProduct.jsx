@@ -163,7 +163,7 @@ function SingleProduct() {
 
                                                     <div className="input-wrapper">
 
-                                                        <input type="text" placeholder="Enter Pincode" className="postal-input" maxlength="6" pattern="\d{6}" inputMode='numeric' onInput={(e) => { e.target.value = e.target.value.replace(/\D/, '') }} />
+                                                        <input type="text" placeholder="Enter Pincode" className="postal-input" maxLength="6" pattern="\d{6}" inputMode='numeric' onInput={(e) => { e.target.value = e.target.value.replace(/\D/, '') }} />
 
                                                         <button className="check-btn">Check</button>
 
