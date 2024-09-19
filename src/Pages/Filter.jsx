@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Filter.css'
-import { useState, useMemo } from 'react';
-import { Container, Row, Col, Form, Button, Pagination, Accordion } from 'react-bootstrap';
+import { useState } from 'react';
+import { Container, Row, Col, Form, Button, Accordion } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { ProductList } from '../Hooks/ProductList';
 import { Skeleton } from '@mui/material';
+import { GetFilter } from '../Services/AllAPi';
 
 function Filter() {
 
-    window.scrollTo(0, 0)
+
 
 
     // ALL PRODUCT DATA
     const { data, isLoading, isError, isSuccess } = ProductList()
+
+
+    // Filter Data
+    const [Filter, SetFilter] = useState([])
 
 
     // Filter Status
@@ -25,7 +30,7 @@ function Filter() {
 
     const [FilterData, SetFilterData] = useState({
 
-        brand: "", category: "", type: ""
+        brand: "", category: "", type: "", size: "", color: ""
 
     })
 
@@ -35,51 +40,91 @@ function Filter() {
 
 
 
-    const filteredProducts = useMemo(() => {
-        if (!isSuccess) return [];
+    useEffect(() => {
 
-        // Check if all filter fields are empty or default
-        const noFiltersApplied =
-            !FilterData.category &&
-            !FilterData.type &&
-            !FilterData.brand;
+        if (!data || isLoading || isError) return
 
+        const filteredData = data.filter((item) => {
 
-        // Return all products if no filters are applied
-        if (noFiltersApplied) {
-            return data;
-        }
+            const brandMatch = !FilterData.brand || FilterData.brand.toLowerCase() === "allbrands" || item.brand.toLowerCase() === FilterData.brand.toLowerCase();
+            const categoryMatch = !FilterData.category || item.category.toLowerCase() === FilterData.category.toLowerCase();
+            const typeMatch = !FilterData.type || item.sub_cateory?.toLowerCase() === FilterData.type.toLowerCase();
 
-        // Filter products based on selected filters
-        return data.filter(product => {
-
-            const inCategory = FilterData.category === "" || product.category.toLowerCase() === FilterData.category.toLowerCase();
-            const inType = FilterData.type === "" || product.sub_cateory.toLowerCase() === FilterData.type.toLowerCase();
-            const inBrand = FilterData.brand === "" || product.brand.toLowerCase() === FilterData.brand.toLowerCase();
-
-            return inCategory && inType && inBrand;
+            return brandMatch && categoryMatch && typeMatch
 
         })
 
-    }, [data, isSuccess, FilterData])
+        SetFilter(filteredData)
+
+        window.scrollTo(0, 0)
+
+    }, [data, FilterData, isLoading, isError])
 
 
-    console.log(filteredProducts)
+
+    // Size Filter
+    useEffect(() => {
+
+
+        const GetFilterData = async () => {
+
+
+            try {
+
+
+                if (FilterData.category) {
+
+
+                    const res = await GetFilter(FilterData.category, FilterData.size, FilterData.color)
+
+
+                    if (res.status >= 200 && res.status <= 300) {
+
+
+                        SetFilter(res.data)
+
+                    }
+                    else {
+
+                        console.log(res);
+
+
+                    }
+
+                }
+
+
+            }
+            catch (err) {
+
+                console.log(err);
+
+
+            }
+
+
+        }
+
+        window.scrollTo(0, 0);
+
+
+        GetFilterData()
+
+
+    }, [FilterData.size, FilterData.color])
 
 
 
 
+    const ClearAll = () => {
 
-    const ClearAll = ()=>{
 
-
-        SetFilterData({...FilterData,brand:"",type:"",category:""})
-
+        SetFilterData({ ...FilterData, brand: "", type: "", category: "" })
 
     }
 
-
-
+    
+    
 
 
 
@@ -116,10 +161,6 @@ function Filter() {
                         <div className={`collapse d-lg-block mb-5 ${open ? 'show' : ''}`} id="navbarSupportedContent">
 
 
-
-
-
-
                             <div className='d-flex justify-content-between mb-3'>
 
                                 <h4 className='mb-0'>Filter</h4>
@@ -139,7 +180,7 @@ function Filter() {
 
                                 <Form.Control as="select" onChange={(e) => { SetFilterData({ ...FilterData, brand: e.target.value }) }}>
 
-                                    <option>All Brands</option>
+                                    <option value="allbrands">All Brands</option>
                                     <option value="XPANIA">XPANIA</option>
                                     <option value="ZIBAGO">ZIBAGO</option>
                                     <option value="AIDA">AIDA</option>
@@ -244,9 +285,9 @@ function Filter() {
 
                                             <Form.Check
                                                 type="checkbox"
-                                                checked={FilterData.type == "Casuals"}
+                                                checked={FilterData.type == "Casual"}
                                                 label="Casuals"
-                                                value="Casuals"
+                                                value="Casual"
                                                 id="type-Casuals"
                                                 className="custom-checkbox"
                                                 onChange={(e) => { SetFilterData({ ...FilterData, type: e.target.value }) }}
@@ -321,15 +362,15 @@ function Filter() {
 
                                         <Form>
 
-                                            <Form.Check type="checkbox" label="1" id="size-1" className="custom-checkbox" />
+                                            <Form.Check checked={FilterData.size == "1"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="1" value="1" id="size-1" className="custom-checkbox" />
 
-                                            <Form.Check type="checkbox" label="2" id="size-2" className="custom-checkbox" />
+                                            <Form.Check checked={FilterData.size == "2"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="2" value="2" id="size-2" className="custom-checkbox" />
 
-                                            <Form.Check type="checkbox" label="3" id="size-3" className="custom-checkbox" />
+                                            <Form.Check checked={FilterData.size == "3"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="3" value="3" id="size-3" className="custom-checkbox" />
 
-                                            <Form.Check type="checkbox" label="4" id="size-4" className="custom-checkbox" />
+                                            <Form.Check checked={FilterData.size == "4"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="4" value="4" id="size-4" className="custom-checkbox" />
 
-                                            <Form.Check type="checkbox" label="5" id="size-5" className="custom-checkbox" />
+                                            <Form.Check checked={FilterData.size == "5"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="5" value="5" id="size-5" className="custom-checkbox" />
 
 
 
@@ -350,21 +391,21 @@ function Filter() {
 
                                                 <div>
 
-                                                    <Form.Check type="checkbox" label="6" id="size-6" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "6"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="6" value="6" id="size-6" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="7" id="size-7" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "7"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="7" value="7" id="size-7" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="8" id="size-8" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "8"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="8" value="8" id="size-8" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="9" id="size-9" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "9"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="9" value="9" id="size-9" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="10" id="size-10" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "10"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="10" value="10" id="size-10" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="11" id="size-11" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "11"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="11" value="11" id="size-11" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="12" id="size-12" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "12"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="12" value="12" id="size-12" className="custom-checkbox" />
 
-                                                    <Form.Check type="checkbox" label="13" id="size-13" className="custom-checkbox" />
+                                                    <Form.Check checked={FilterData.size == "13"} onChange={(e) => { SetFilterData({ ...FilterData, size: e.target.value }) }} type="checkbox" label="13" value="13" id="size-13" className="custom-checkbox" />
 
 
                                                 </div>
@@ -398,7 +439,7 @@ function Filter() {
 
                                             <div className="checkbox-container">
 
-                                                <Form.Check type="checkbox" id="size-1" className="custom-checkbox" />
+                                                <Form.Check value="black"  type="checkbox" id="size-1" className="custom-checkbox" />
 
                                                 <div className="label-container">
 
@@ -494,13 +535,22 @@ function Filter() {
                         <Row>
 
 
-                            <h4>{filteredProducts.length > 0 ? `${filteredProducts.length} Products Found `: ""}</h4>
+                            {
+
+                                Filter.length > 0 &&
+
+                                <h4>{Filter.length} Products Found</h4>
+
+                            }
+
+
+
 
 
 
                             {
 
-                                isLoading  &&
+                                isLoading &&
 
                                 Array.from({ length: 6 }).map((item) => (
 
@@ -523,10 +573,10 @@ function Filter() {
 
                             {
 
-                                isSuccess && filteredProducts.length > 0 ?
+                                isSuccess && Filter.length > 0 ?
 
 
-                                    filteredProducts.map((item) => (
+                                    Filter.map((item) => (
 
 
                                         <Col md={3} sm={6} xs={12} key={item.id} className="product-col">
@@ -537,7 +587,7 @@ function Filter() {
 
                                                 <div className='new-arrival'>
 
-                                                    <img alt='product-image' loading='lazy' src={item.image} className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/1`) }} />
+                                                    <img alt='product-image' loading='lazy' src={item.image} className="card-img-top" style={{ cursor: 'pointer' }} onClick={() => { Navigate(`/pro/${item.id}`) }} />
 
                                                 </div>
 
@@ -587,7 +637,7 @@ function Filter() {
 
                         </Row>
 
-                       
+
 
                     </Col>
 

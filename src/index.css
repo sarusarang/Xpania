@@ -266,18 +266,78 @@ html {
     background-color: #000 !important;
     color: #fff !important;
     font-weight: 700 !important;
-    transition:  all ease-in-out 0.3s !important;
+    transition: all ease-in-out 0.3s !important;
 
 }
 
-.btn-buy:hover{
+.btn-buy:hover {
 
     background-color: #fff !important;
     color: #000 !important;
     border: 1px solid #000 !important;
-    
+
 }
 
+
+
+
+
+#root {
+    padding: 0;
+}
+
+.cart-page {
+    margin-top: 30px;
+}
+
+.card-main {
+    max-width: 25rem;
+}
+
+.image {}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+}
+
+.btn-outline-secondary {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.cart-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+button.btn-danger {
+    padding: 5px 10px;
+}
+
+.card p {
+    margin: 0 0 5px;
+}
+
+h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) and (max-width:1024px) {
+    .quantity-selector {
+        padding-right: 60px;
+    }
+
+    .remove {
+        transform: translateX(-20%);
+    }
+}
 
 
 /* Mobile view */

@@ -40,3 +40,32 @@ export const AllProducts = async () => {
     return await CommonApi("GET", `${base_url}/products/`, "", "")
 
 }
+
+
+
+// Filter Size
+export const GetFilter = async (categ, size, color) => {
+
+    const params = new URLSearchParams({ category: categ, size: size, color: color })
+
+    return CommonApi("GET", `${base_url}/filter/?${params.toString()}`, "", "")
+
+}
+
+
+
+// Get Quanity
+export const GetQuanity = async () => {
+
+    return CommonApi("GET", `${base_url}/sizes`)
+
+}
+
+
+
+// Get Color
+export const GetColor = async () => {
+
+    return CommonApi("GET", `${base_url}/colors/`, "", "")
+
+}
