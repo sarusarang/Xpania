@@ -22,11 +22,13 @@ function Cart() {
     const { data, isSuccess } = GetCartItems()
 
 
+    console.log(data);
+    
 
 
     useEffect(() => {
         
-        
+
         const user = sessionStorage.getItem("user");
 
         if (!user) {

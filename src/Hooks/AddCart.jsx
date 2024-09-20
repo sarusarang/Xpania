@@ -21,7 +21,11 @@ export const GetCartItems = () => {
             return response.data
 
         },
-        
+
+        refetchOnWindowFocus: true, // Refetch data when window regains focus
+        refetchOnMount: true, // Refetch data when component mounts
+        staleTime: 0, // Always consider data fresh to refetch
+
     })
 
 }
