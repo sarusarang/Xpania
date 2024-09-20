@@ -3,7 +3,6 @@ import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
 import './ProductSlide.css'
 import AspectRatio from '@mui/joy/AspectRatio'
-import Button from '@mui/joy/Button'
 import Card from '@mui/joy/Card'
 import CardContent from '@mui/joy/CardContent'
 import CardOverflow from '@mui/joy/CardOverflow'
@@ -13,6 +12,7 @@ import Typography from '@mui/joy/Typography'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 import { ProductList } from '../Hooks/ProductList'
 import { Skeleton } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 function ProductSlide() {
 
@@ -45,7 +45,10 @@ function ProductSlide() {
 
 
     // ALL PRODUCT DATA
-    const { data, isLoading, isError, isSuccess } = ProductList()
+    const { data, isLoading,isSuccess } = ProductList()
+
+
+    const Navigate = useNavigate()
 
 
     useEffect(() => {
@@ -69,8 +72,6 @@ function ProductSlide() {
 
 
 
-
-    console.log(data);
 
 
 
@@ -121,7 +122,7 @@ function ProductSlide() {
                                     <Card sx={{ width: "100% ", maxWidth: '100%', boxShadow: 'lg' }}>
 
 
-                                        <CardOverflow >
+                                        <CardOverflow>
 
                                             <AspectRatio sx={{ minWidth: 200 }}>
                                                 <img
@@ -129,6 +130,7 @@ function ProductSlide() {
 
                                                     loading="lazy"
                                                     alt="img"
+                                                    onClick={() => Navigate(`/pro/${item.id}`)}
                                                 />
                                             </AspectRatio>
 
@@ -138,8 +140,11 @@ function ProductSlide() {
                                         <CardContent>
 
                                             <Typography level="body-xs"></Typography>
+
+
                                             <Link
-                                                href="#product-card"
+
+                                                onClick={() => Navigate(`/pro/${item.id}`)}
                                                 color="neutral"
                                                 textColor="text.primary"
                                                 overlay
@@ -149,23 +154,28 @@ function ProductSlide() {
                                                 {item.sub_cateory} for {item.category}
                                             </Link>
 
+
+
                                             <Typography
                                                 level="title-lg"
                                                 sx={{ mt: 1, fontWeight: 'xl' }}
                                                 endDecorator={
-                                                    <Chip component="span" size="sm" variant="soft" color="success">
+                                                    item.offer_is_available && (
 
-                                                        Lowest Price
-
-                                                    </Chip>
+                                                        <Chip component="span" size="sm" variant="soft" color="success" className='shimmer-chip '>
+                                                            Lowest Price
+                                                        </Chip>
+                                                    )
                                                 }
                                             >
-                                                <h5 className=" fw-bold mb-0 me-2">₹{item.offer_is_available ? item.offer_price : item.price}</h5>
+                                                <h5 className=" fw-bold mb-0 me-2">Just ₹{item.offer_is_available ? item.offer_price : item.price}</h5>
+
+                                                <span className='small text-danger'>{item.offer_is_available ? <s> ₹{item.price} </s> : ""}</span>
                                             </Typography>
 
-                                            <Typography level="body-sm">
+                                            {/* <Typography level="body-sm">
                                                 (Only <b>7</b> left in stock!)
-                                            </Typography>
+                                            </Typography> */}
 
                                         </CardContent>
 

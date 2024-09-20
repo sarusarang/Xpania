@@ -595,7 +595,7 @@ function Filter() {
 
                                                 <div className="card-body d-flex flex-column">
 
-                                                    <p className="mb-1">{item.category} {item.sub_cateory} <span className='fw-bold'>XLV001</span></p>
+                                                    <p className="mb-1">{item.category} {item.sub_cateory} <span className='fw-bold'>{item.name}</span></p>
 
                                                     <p className="fw-bold mb-1">{item.brand}</p>
 

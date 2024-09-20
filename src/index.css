@@ -329,6 +329,76 @@ h4 {
     font-weight: 500;
 }
 
+
+
+
+/* Product slide */
+@keyframes slimShine {
+    0% {
+        background-position: -100%;
+    }
+
+    100% {
+        background-position: 200%;
+    }
+}
+
+
+
+@keyframes shimmer {
+    0% {
+        background-position: -150%;
+    }
+
+    100% {
+        background-position: 150%;
+    }
+}
+
+.shimmer-chip {
+    background: linear-gradient(120deg, #22c463 30%, #fff 10%, #22c463 70%);
+    background-size: 200% auto;
+    color: white !important;
+    padding: 5px 10px;
+    font-size: 12px;
+    animation: shimmer 2s linear infinite;
+    position: relative;
+
+}
+
+
+
+@keyframes shimmer {
+    0% {
+        background-position: -150%;
+    }
+
+    100% {
+        background-position: 150%;
+    }
+}
+
+.alert-shimmer {
+    background: linear-gradient(120deg, #d1ecf1 30%, #ffffff 10%, #d1ecf1 70%);
+    background-size: 200% auto;
+    /* Adjust to fit your needs */
+    color: #000;
+    /* Text color, adjust as needed */
+    padding: 15px;
+    /* Add padding for better appearance */
+    font-size: 16px;
+    /* Adjust font size as needed */
+    animation: shimmer 2s linear infinite;
+    position: relative;
+    border-radius: 5px;
+    /* Optional: for rounded corners */
+}
+
+
+
+
+
+
 @media screen and (min-width: 768px) and (max-width:1024px) {
     .quantity-selector {
         padding-right: 60px;

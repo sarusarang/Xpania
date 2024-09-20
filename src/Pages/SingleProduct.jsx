@@ -2,22 +2,25 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ProductSlide from '../Components/ProductSlide'
 import { ProductList } from '../Hooks/ProductList';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GetQuanity } from '../Services/AllAPi';
-import { GetColor } from '../Services/AllAPi';
+import { GetColor, AddtoCart } from '../Services/AllAPi';
 import ProductSkelton from '../Components/ProductSkelton'
+import { toast } from 'sonner';
+
 
 function SingleProduct() {
-
-    window.scrollTo(0, 0)
 
 
 
     // Product id 
     const { id } = useParams()
 
+
+    const Navigate = useNavigate();
+
     // ALL PRODUCT DATA
-    const { data, isLoading, isError, isSuccess } = ProductList()
+    const { data, isLoading, isSuccess, refetch } = ProductList()
 
 
     // Product Data
@@ -44,12 +47,16 @@ function SingleProduct() {
     const [loading, Setloading] = useState(true)
 
 
+
+
+
     useEffect(() => {
 
 
         const GetAllProducts = () => {
 
             if (isSuccess) {
+
 
                 const Result = data.find((item) => (item.id == id))
 
@@ -159,12 +166,85 @@ function SingleProduct() {
 
         ProductColor()
 
+        refetch()
 
-    }, [])
+        window.scrollTo(0, 0)
+
+
+    }, [id])
 
 
 
+    // Handle Add To Cart
+    const HandleCart = async (product_id) => {
 
+
+        try {
+
+
+            const user = sessionStorage.getItem("user")
+            const token = sessionStorage.getItem("token")
+
+
+            if (user) {
+
+
+                const reqheader = {
+
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`
+
+                }
+
+                const formdata = new FormData()
+                formdata.append("items", product_id)
+                formdata.append("user", user)
+                formdata.append("color", SelectedColor.product_color)
+                formdata.append("size", PriceandQuanity.size)
+
+
+                const res = await AddtoCart(formdata, reqheader)
+
+
+                if (res.status >= 200 && res.status <= 300) {
+
+
+                    toast.success("Product Added To Cart...!")
+
+                }
+                else {
+
+                    console.log(res)
+                    toast.warning("Product Alredy Exist in the Cart")
+
+                }
+
+
+            }
+            else {
+
+
+                toast.warning("Please Login First..!")
+
+
+                setTimeout(() => {
+
+                    Navigate('/auth')
+
+                }, 1000);
+
+            }
+
+        }
+        catch (err) {
+
+
+            console.log(err)
+
+        }
+
+
+    }
 
 
 
@@ -179,7 +259,7 @@ function SingleProduct() {
 
             {
 
-                !AllQuanity.length || !AllColors.length ||  loading || isLoading ?
+                !AllQuanity.length || !AllColors.length || loading || isLoading ?
 
                     <ProductSkelton />
 
@@ -267,7 +347,7 @@ function SingleProduct() {
 
                                                     AllColors.map((item) => (
 
-                                                        <a style={{ cursor: 'pointer' }} data-fslightbox="mygalley" className="border mx-1 rounded-2 item-thumb" target="_blank" data-type="image">
+                                                        <a style={{ cursor: 'pointer' }} onClick={() => { SetSelectedColor(item) }} data-fslightbox="mygalley" className="border mx-1 rounded-2 item-thumb" target="_blank" data-type="image">
                                                             <img loading='lazy' width="60" height="60" className="rounded-2" src={item.image} />
                                                         </a>
 
@@ -374,7 +454,7 @@ function SingleProduct() {
 
 
                                                 <a className="btn btn-buy p-3 shadow me-3 col-md-5 mt-3"> Buy now </a>
-                                                <a className="btn btn-buy p-3 shadow col-md-6 mt-3"> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                                                <a className="btn btn-buy p-3 shadow col-md-6 mt-3" onClick={() => { HandleCart(ProductData.id) }}> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
 
                                             </div>
 
