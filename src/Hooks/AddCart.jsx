@@ -21,10 +21,8 @@ export const GetCartItems = () => {
             return response.data
 
         },
-        refetchOnWindowFocus: false
-
+        
     })
-
 
 }
 

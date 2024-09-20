@@ -7,7 +7,7 @@ import { GetQuanity } from '../Services/AllAPi';
 import { GetColor, AddtoCart } from '../Services/AllAPi';
 import ProductSkelton from '../Components/ProductSkelton'
 import { toast } from 'sonner';
-
+import { GetCartItems } from '../Hooks/AddCart'
 
 function SingleProduct() {
 
@@ -21,6 +21,9 @@ function SingleProduct() {
 
     // ALL PRODUCT DATA
     const { data, isLoading, isSuccess, refetch } = ProductList()
+
+    // Cart Refetch
+    const{refetch:CartFetch} = GetCartItems()
 
 
     // Product Data
@@ -210,6 +213,7 @@ function SingleProduct() {
 
 
                     toast.success("Product Added To Cart...!")
+                    CartFetch()
 
                 }
                 else {

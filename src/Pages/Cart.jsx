@@ -25,43 +25,25 @@ function Cart() {
 
 
     useEffect(() => {
+        
+        
+        const user = sessionStorage.getItem("user");
 
-
-        // Get Cart Items
-        const GetCart = () => {
-
-
-            const user = sessionStorage.getItem("user")
-
-
-            if (user) {
-
-                if (isSuccess) {
-
-
-                    const CartProducts = data.map(item => item.product)
-
-                    SetCartItems(CartProducts)
-
-
-                }
-
-            } else {
-
-                toast.warning("Login First...!")
-
-                Navigate('/auth')
-
-            }
-
+        if (!user) {
+            toast.warning("Login First...!");
+            Navigate('/auth');
+            return;
         }
 
 
-        GetCart()
+        if (isSuccess) {
+            const CartProducts = data.map(item => item.product);
+            SetCartItems(CartProducts);
+        }
 
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
 
-    }, [data, isSuccess])
+    }, [data, isSuccess, Navigate])
 
 
 
