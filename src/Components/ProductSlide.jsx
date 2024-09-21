@@ -96,10 +96,10 @@ function ProductSlide() {
                         isLoading ?
 
 
-                            Array.from({ length: 3 }).map((item) => (
+                            Array.from({ length: 3 }).map((item,index) => (
 
 
-                                <div className='me-5 mt-3'>
+                                <div className='me-5 mt-3' key={index}>
 
                                     <Skeleton sx={{ height: 190 }} width={'100%'} animation="wave" variant="rectangular" />
 
@@ -117,7 +117,7 @@ function ProductSlide() {
                             Product.map((item) => (
 
 
-                                <div className='ms-3'>
+                                <div className='ms-3' key={item.id}>
 
 
                                     <Card sx={{ width: "100% ", maxWidth: '100%', boxShadow: 'lg' }}>

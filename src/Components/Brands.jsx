@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import './Brand.css'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 function Brands() {
 
@@ -11,10 +12,21 @@ function Brands() {
 
         Aos.init()
 
-        Aos.refresh(); 
+        Aos.refresh();
 
     }, [])
 
+
+    const Navigate = useNavigate()
+
+
+    const handleclick = (data) => {
+
+        const queryParams = new URLSearchParams({ brand: data }).toString();
+
+        Navigate(`/fil?${queryParams}`)
+
+    }
 
     return (
 
@@ -41,7 +53,7 @@ function Brands() {
 
                         <p>Offers A Sophisticated Range Of Footwear Designed For Women & Gents, Premium Materials With Timeless Designs.</p>
 
-                        <button className='btn btn-discover w-50'> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={()=>handleclick("xpania")}> Discover</button>
 
                     </div>
 
@@ -57,7 +69,7 @@ function Brands() {
 
                         <p>Is Perfect For Those Who Navigate The Hustle And Bustle Of Life While Keeping Their Style Of Activity Strong.</p>
 
-                        <button className='btn btn-discover w-50'> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={()=>handleclick("zibago")}> Discover</button>
 
                     </div>
 
@@ -73,7 +85,7 @@ function Brands() {
 
                         <p>Foot Health Without Compromising On Style, Offers Shoes & Sandals That Keep You Comfortable All Day Long</p>
 
-                        <button className='btn btn-discover w-50'> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={()=>handleclick("aida")}> Discover</button>
 
                     </div>
 

@@ -132,7 +132,7 @@ function Cart() {
 
 
 
-                                        <div className="row justify-content-center mt-5 mb-5">
+                                        <div className="row justify-content-center mt-5 mb-5" key={item.id}>
 
 
                                             <div className="col-md-3 align-content-center ms-md-5" onClick={() => { Navigate(`/pro/${item.id}`) }} style={{ cursor: 'pointer' }}>

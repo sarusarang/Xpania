@@ -349,9 +349,9 @@ function SingleProduct() {
 
                                                     AllColors &&
 
-                                                    AllColors.map((item) => (
+                                                    AllColors.map((item ,index) => (
 
-                                                        <a style={{ cursor: 'pointer' }} onClick={() => { SetSelectedColor(item) }} data-fslightbox="mygalley" className="border mx-1 rounded-2 item-thumb" target="_blank" data-type="image">
+                                                        <a  key={index} style={{ cursor: 'pointer' }} onClick={() => { SetSelectedColor(item) }} data-fslightbox="mygalley" className="border mx-1 rounded-2 item-thumb" target="_blank" data-type="image">
                                                             <img loading='lazy' width="60" height="60" className="rounded-2" src={item.image} />
                                                         </a>
 
@@ -407,9 +407,9 @@ function SingleProduct() {
 
                                                                 AllQuanity &&
 
-                                                                AllQuanity.map((item) => (
+                                                                AllQuanity.map((item,index) => (
 
-                                                                    <button className={`size-btn  ${PriceandQuanity.size === item.size ? 'selected' : ''}`} onClick={() => { SetPriceandQuanity(item) }}>{item.size}</button>
+                                                                    <button key={index} className={`size-btn  ${PriceandQuanity.size === item.size ? 'selected' : ''}`} onClick={() => { SetPriceandQuanity(item) }}>{item.size}</button>
 
                                                                 ))
 
@@ -455,7 +455,6 @@ function SingleProduct() {
 
                                             {/* Buy Now */}
                                             <div className='row sec-buy'>
-
 
                                                 <a className="btn btn-buy p-3 shadow me-3 col-md-5 mt-3"> Buy now </a>
                                                 <a className="btn btn-buy p-3 shadow col-md-6 mt-3" onClick={() => { HandleCart(ProductData.id) }}> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
