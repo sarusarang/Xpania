@@ -456,7 +456,7 @@ function SingleProduct() {
                                             {/* Buy Now */}
                                             <div className='row sec-buy'>
 
-                                                <a className="btn btn-buy p-3 shadow me-3 col-md-5 mt-3"> Buy now </a>
+                                                <a className="btn btn-buy p-3 shadow me-3 col-md-5 mt-3" onClick={()=>{Navigate('/buy')}}> Buy now </a>
                                                 <a className="btn btn-buy p-3 shadow col-md-6 mt-3" onClick={() => { HandleCart(ProductData.id) }}> <i className="me-1 fa fa-shopping-basket"></i> Add to cart </a>
 
                                             </div>

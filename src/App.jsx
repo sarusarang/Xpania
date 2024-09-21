@@ -14,6 +14,7 @@ const Auth = lazy(() => import('./Pages/Auth'))
 const Policy = lazy(() => import('./Pages/Policy'))
 const Terms = lazy(() => import('./Pages/Terms'))
 const Cart = lazy(() => import('./Pages/Cart'))
+const Buy = lazy(() => import('./Pages/Buy'))
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
     const hidecheck = () => {
 
-      if (location.pathname == '/auth') {
+      if (location.pathname == '/auth' || location.pathname == '/buy') {
 
 
         sethide(true)
@@ -94,6 +95,8 @@ function App() {
           <Route path="/terms" element={<Terms />} />
 
           <Route path="/Cart" element={<Cart />} />
+
+          <Route path="/buy" element={<Buy />} />
 
         </Routes>
 
