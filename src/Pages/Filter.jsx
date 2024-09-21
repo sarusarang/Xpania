@@ -107,7 +107,7 @@ function Filter() {
 
         window.scrollTo(0, 0)
 
-    }, [data, FilterData.midcategory,FilterData.category, FilterData.brand, isLoading, isError,location.search])
+    }, [data, FilterData.midcategory,FilterData.category,FilterData.type, FilterData.brand, isLoading, isError,location.search])
 
 
 
