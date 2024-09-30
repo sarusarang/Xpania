@@ -87,7 +87,7 @@ function Slider() {
                                     <h1>Collections to match</h1>
 
                                     <p>
-                                    Discover our collections perfectly matched with stylish footwear. Step out with confidence and flair!
+                                        Discover our collections perfectly matched with stylish footwear. Step out with confidence and flair!
                                     </p>
 
 
@@ -138,7 +138,7 @@ function Slider() {
                                     <h1>Steps towards Ambition</h1>
 
                                     <p>
-                                    A step towards ambition with our quality footwear collection, upraise your journey with every step!
+                                        A step towards ambition with our quality footwear collection, upraise your journey with every step!
                                     </p>
 
 
@@ -189,7 +189,7 @@ function Slider() {
                                     <h1>Trust in Care</h1>
 
                                     <p>
-                                    Stands for comfort, posture, and confidence, Have an option for your perfect!
+                                        Stands for comfort, posture, and confidence, Have an option for your perfect!
                                     </p>
 
 
@@ -226,25 +226,10 @@ function Slider() {
 
 
 
-
-
-
-
-
-
                 </Carousel>
 
 
-
-
-
-
-
             </section>
-
-
-
-
 
 
         </>
