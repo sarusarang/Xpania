@@ -304,7 +304,7 @@ function SingleProduct() {
 
                                             {/* Tittle */}
                                             <h3 className="title text-dark mb-0 fw-bold">
-                                                {ProductData.brand}
+                                                {ProductData.brand} {ProductData.name}
                                             </h3>
 
 
