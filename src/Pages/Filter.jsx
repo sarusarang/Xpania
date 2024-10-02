@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Filter.css'
 import { useState } from 'react';
 import { Container, Row, Col, Form, Button, Accordion } from 'react-bootstrap';
@@ -6,19 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import { ProductList } from '../Hooks/ProductList';
 import { Skeleton } from '@mui/material';
 import { GetFilter } from '../Services/AllAPi';
-import { useLocation } from 'react-router-dom';
+import useUserState from '../Hooks/FilterUpdate';
 
 
 function Filter() {
 
 
+    const { Brand, updateUser } = useUserState()
 
-    const location = useLocation();
 
+    console.log(Brand)
 
 
     // ALL PRODUCT DATA
     const { data, isLoading, isError, isSuccess } = ProductList();
+
+    
+    const isFirstRender = useRef(true); // Track if it's the first render
 
 
     // Filter Data
@@ -35,40 +39,22 @@ function Filter() {
 
     const [FilterData, setFilterData] = useState({
 
-        brand: "",
         category: [],
         midcategory: [],
         type: [],
         size: "",
         color: ""
 
-
-    });
+    })
 
 
 
     const Navigate = useNavigate()
 
 
-
-
-
-    // Use params Filter
-    useEffect(() => {
-
-        const queryParams = new URLSearchParams(location.search);
-
-        const brand = queryParams.get('brand') || "";
-
-        setFilterData({ ...FilterData, brand: brand })
-
-    }, [location.search])
-
-
-
-
     // Handling filter data
     const handleCheckboxChange = (filterType, value) => {
+
         setFilterData(prevState => {
             const currentValues = prevState[filterType];
             if (currentValues.includes(value.toLowerCase())) {
@@ -76,19 +62,20 @@ function Filter() {
             } else {
                 return { ...prevState, [filterType]: [...currentValues, value.toLowerCase()] }; // Add item
             }
-        });
-    };
+        })
+
+    }
 
 
 
-    // filtering 
+    // filtering
     useEffect(() => {
 
-        if (!data || isLoading || isError) return;
+        if (!data || isLoading || isError || !Brand) return;
 
         const filteredData = data.filter((item) => {
 
-            const brandMatch = FilterData.brand.length === 0 || FilterData.brand.includes(item.brand.toLowerCase()) || FilterData.brand.toLowerCase() === "allbrands"
+            const brandMatch = !Brand || Brand.includes(item.brand.toLowerCase()) || Brand.toLowerCase() === "allbrands"
 
             const categoryMatch = FilterData.category.length === 0 || FilterData.category.includes(item.category.toLowerCase())
 
@@ -104,7 +91,7 @@ function Filter() {
 
         window.scrollTo(0, 0)
 
-    }, [data, FilterData.midcategory,FilterData.category,FilterData.type, FilterData.brand, isLoading, isError,location.search])
+    }, [FilterData.midcategory, FilterData.category, FilterData.type, isSuccess, Brand])
 
 
 
@@ -152,6 +139,12 @@ function Filter() {
 
         }
 
+
+        if (isFirstRender.current) {
+            isFirstRender.current = false; // Set to false after initial render
+            return;
+        }
+
         window.scrollTo(0, 0);
 
 
@@ -166,7 +159,9 @@ function Filter() {
     const ClearAll = () => {
 
 
-        setFilterData({ ...FilterData, brand: "", type: [], category: [], midcategory: [], size: "", color: "" })
+        setFilterData({ ...FilterData, type: [], category: [], midcategory: [], size: "", color: "" })
+
+        updateUser("")
 
     }
 
@@ -224,7 +219,7 @@ function Filter() {
 
                                 <Form.Label className='fw-bold'>Brands</Form.Label>
 
-                                <Form.Control as="select" onChange={(e) => { setFilterData({ ...FilterData, brand: e.target.value }) }}>
+                                <Form.Control as="select" onChange={(e) => { updateUser(e.target.value) }}>
 
                                     <option value="allbrands">All Brands</option>
                                     <option value="xpania">XPANIA</option>
@@ -600,7 +595,7 @@ function Filter() {
 
                                 isLoading &&
 
-                                Array.from({ length: 6 }).map((item,index) => (
+                                Array.from({ length: 6 }).map((item, index) => (
 
 
                                     <div className=' mt-3 col-md-4' key={index}>

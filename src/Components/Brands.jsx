@@ -4,9 +4,12 @@ import './Brand.css'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
+import useUserState from '../Hooks/FilterUpdate';
 
 function Brands() {
 
+
+    const Navigate = useNavigate()
 
     useEffect(() => {
 
@@ -17,16 +20,22 @@ function Brands() {
     }, [])
 
 
-    const Navigate = useNavigate()
+    
+    const { user, isLoading, updateUser } = useUserState();
+
 
 
     const handleclick = (data) => {
 
-        const queryParams = new URLSearchParams({ brand: data }).toString();
-
-        Navigate(`/fil?${queryParams}`)
+        updateUser(data);
+        Navigate(`/fil`)
 
     }
+
+
+
+
+
 
     return (
 
@@ -53,7 +62,7 @@ function Brands() {
 
                         <p>Offers A Sophisticated Range Of Footwear Designed For Women & Gents, Premium Materials With Timeless Designs.</p>
 
-                        <button className='btn btn-discover w-50' onClick={()=>handleclick("xpania")}> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={() => handleclick("xpania")}> Discover</button>
 
                     </div>
 
@@ -69,7 +78,7 @@ function Brands() {
 
                         <p>Is Perfect For Those Who Navigate The Hustle And Bustle Of Life While Keeping Their Style Of Activity Strong.</p>
 
-                        <button className='btn btn-discover w-50' onClick={()=>handleclick("zibago")}> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={() => handleclick("zibago")}> Discover</button>
 
                     </div>
 
@@ -85,7 +94,7 @@ function Brands() {
 
                         <p>Foot Health Without Compromising On Style, Offers Shoes & Sandals That Keep You Comfortable All Day Long</p>
 
-                        <button className='btn btn-discover w-50' onClick={()=>handleclick("aida")}> Discover</button>
+                        <button className='btn btn-discover w-50' onClick={() => handleclick("aida")}> Discover</button>
 
                     </div>
 
