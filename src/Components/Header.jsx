@@ -54,9 +54,9 @@ function Header() {
                             <i className="fa fa-phone mx-2"></i>
                             <a
                                 className="navbar-sm-brand text-light text-decoration-none"
-                                href="tel:010-020-0340"
+                                href="tel:+919746388810"
                             >
-                                010-020-0340
+                                +91 9746388810
                             </a>
                         </div>
                         <div>
