@@ -15,9 +15,6 @@ function Filter() {
     const { Brand, updateUser } = useUserState()
 
 
-    console.log(Brand)
-
-
     // ALL PRODUCT DATA
     const { data, isLoading, isError, isSuccess } = ProductList();
 
@@ -73,6 +70,7 @@ function Filter() {
 
         if (!data || isLoading || isError || !Brand) return;
 
+
         const filteredData = data.filter((item) => {
 
             const brandMatch = !Brand || Brand.includes(item.brand.toLowerCase()) || Brand.toLowerCase() === "allbrands"
@@ -91,7 +89,7 @@ function Filter() {
 
         window.scrollTo(0, 0)
 
-    }, [FilterData.midcategory, FilterData.category, FilterData.type, isSuccess, Brand])
+    }, [FilterData.midcategory, FilterData.category, FilterData.type, isSuccess, Brand,data])
 
 
 
@@ -141,7 +139,7 @@ function Filter() {
 
 
         if (isFirstRender.current) {
-            isFirstRender.current = false; // Set to false after initial render
+            isFirstRender.current = false; 
             return;
         }
 

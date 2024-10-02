@@ -11,7 +11,7 @@ const useUserState = () => {
         queryKey: ['Brand'],
         queryFn: () => {
 
-            return null;
+            return "allbrands";
         },
         staleTime: Infinity,
         cacheTime: Infinity,
